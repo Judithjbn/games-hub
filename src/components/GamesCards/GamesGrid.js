@@ -1,28 +1,33 @@
-import Card from './GamesCards.js';
+import { createCard } from './GamesCards.js';
+import { iconTicTacToe, iconTetris, iconPacMan } from '../../import.js';
 
-export default class GameGrid {
-    constructor(games) {
-        this.games = games;
-    }
+export default function GamesGrid() {
+  const games = [
+    {
+      title: 'Tic Tac Toe',
+      description: 'El clásico juego del tres en raya.',
+      icon: iconTicTacToe,
+      iconWidth: '100px',
+    },
+    {
+      title: 'Tetris',
+      description: 'Un desafío para construir líneas.',
+      icon: iconTetris,
+    },
+    {
+      title: 'Pac-Man',
+      description: 'El juego de arcade más icónico.',
+      icon: iconPacMan,
+    },
+  ];
 
-    render() {
-        const section = document.createElement('section');
-        section.className = 'games-section';
-        
-        const title = document.createElement('h2');
-        title.className = 'section-title';
-        title.textContent = 'Juegos Populares';
-        
-        const grid = document.createElement('div');
-        grid.className = 'games-row';
-        
-        this.games.forEach(game => {
-            const card = new Card(game);
-            grid.appendChild(card.render());
-        });
-        
-        section.appendChild(title);
-        section.appendChild(grid);
-        return section;
-    }
+  const grid = document.createElement('div');
+  grid.classList.add('games-grid');
+
+  games.forEach((game) => {
+    const card = createCard(game);
+    grid.appendChild(card);
+  });
+
+  document.body.appendChild(grid);
 }

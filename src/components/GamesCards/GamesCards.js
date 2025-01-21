@@ -1,15 +1,6 @@
-import { cover } from '/src/import.js';
-// importar iconos de juegos para cards
-
-
 export function createCard(game) {
     const card = document.createElement('div');
     card.classList.add('game-card');
-    
-    const img = document.createElement('img');
-    img.src = cover;
-    img.alt = game.title;
-    img.classList.add('game-card__image');
 
     const title = document.createElement('h3');
     title.textContent = game.title;
@@ -18,10 +9,18 @@ export function createCard(game) {
     const description = document.createElement('p');
     description.textContent = game.description;
     description.classList.add('game-card__description');
+    
+    const icon = document.createElement('img');
+    icon.src = game.icon;
+    icon.alt = `${game.title} Icon`;
+    icon.classList.add('game-card__icon');
+    if (game.iconWidth) {
+      icon.style.width = game.iconWidth;
+    }
 
     card.appendChild(title);
     card.appendChild(description);
-    card.appendChild(img);    
+    card.appendChild(icon);
 
     return card
 }
