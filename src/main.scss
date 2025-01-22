@@ -21,11 +21,10 @@
   }
   body {
     font-family: var(--font-family);
-    background-color: var(--background-color);
+    background-image: url('/BACKGROUNDS.jpg');
+    background-size: cover;
     color: var(--text-color);
     line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
   a {
     text-decoration: none;
@@ -63,26 +62,11 @@
     display: block;
   }
   
-  button {
-    font-family: var(--font-primary);
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: var(--primary-color);
-    color: #fff;
-    transition: var(--transition);
-  
-    &:hover {
-      background-color: var(--secondary-color);
-    }
-  }
-  
   .layout {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: calc(100vh - 5rem);
     position: relative;
   }

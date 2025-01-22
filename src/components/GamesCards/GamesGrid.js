@@ -29,5 +29,5 @@ export default function GamesGrid() {
     grid.appendChild(card);
   });
 
-  document.body.appendChild(grid);
+  return grid;
 }

@@ -13,5 +13,5 @@ export default function Footer() {
         </nav>
     `;
 
-    document.body.appendChild(footer);
+    return footer;
 }

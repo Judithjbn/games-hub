@@ -18,7 +18,9 @@
     transition: var(--transition);
   
     &:hover {
-      color: var(--secondary-color);
-      text-decoration: underline;
+      ///text shadow
+      -webkit-text-stroke: 0.5px var(--text-color);
+      color: transparent;
+      transform: translateY(-5px);
     }
   }
