@@ -4,7 +4,9 @@
     padding-top: 6rem;
     height: 100%;
     flex-wrap: wrap;
+    justify-content: center;
 }
+
 .game-card {
     cursor: pointer;
     display: flex;
@@ -26,17 +28,20 @@
         transform: translateY(-5px);
         box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
     }
+
     &__icon {
         width: 60px;
         height: 60px;
         margin-bottom: 1rem;
     }
+
     &__title {
         -webkit-text-stroke: 1px var(--text-color);
         color: transparent;
         font-size: 2rem;
         margin: 0.5rem 0;
     }
+
     &__description {
         color: var(--text-color);
         font-size: 1rem;
