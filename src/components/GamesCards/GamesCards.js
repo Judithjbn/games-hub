@@ -1,3 +1,9 @@
+function startGame(gameFunction) {
+    document.body.innerHTML = '';
+    const game = gameFunction();
+    document.body.appendChild(game);
+}
+
 export function createCard(game) {
     const card = document.createElement('div');
     card.classList.add('game-card');
@@ -16,6 +22,12 @@ export function createCard(game) {
     icon.classList.add('game-card__icon');
     if (game.iconWidth) {
       icon.style.width = game.iconWidth;
+    }
+
+    if (game.action) {
+      card.addEventListener('click', () => {
+        startGame(game.action);
+      });
     }
 
     card.appendChild(title);

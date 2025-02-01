@@ -1,6 +1,8 @@
 import { createCard } from './GamesCards.js';
 import { iconTicTacToe, iconTetris, iconPacMan } from '../../import.js';
 
+import TicTacToe from '../../games/TicTacToe/TicTacToe.js';
+
 export default function GamesGrid() {
   const games = [
     {
@@ -8,6 +10,7 @@ export default function GamesGrid() {
       description: 'El clásico juego del tres en raya.',
       icon: iconTicTacToe,
       iconWidth: '100px',
+      action: TicTacToe,
     },
     {
       title: 'Tetris',
