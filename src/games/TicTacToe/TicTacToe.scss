@@ -1,4 +1,5 @@
 .tic-tac-toe {
+  padding-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,11 +31,46 @@
   }
 
   &.player-o {
-    color: var(--text-color);
+    color: var(--blue-color);
   }
 }
 
 .info {
   font-size: 1.5rem;
   font-weight: bold;
+}
+.scoreboard {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.score-x {
+  color: var(--primary-color);
+}
+
+.score-o {
+  color: var(--text-color);
+}
+.reset-button {
+  font-weight: 600;
+  font-family: var(--font-family);
+  padding: 10px;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+  cursor: pointer;
+}
+.winning-line {
+  position: absolute;
+  height: 5px;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  transform-origin: left;
+  transition: width 0.5s ease-in-out;
 }
