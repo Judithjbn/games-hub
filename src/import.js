@@ -10,6 +10,7 @@ import './components/GamesCards/GamesCards.scss';
 import './components/Footer/Footer.scss';
 import './components/HomeButton/HomeButton.scss';
 import './games/TicTacToe/TicTacToe.scss';
+import './games/PacMan/PacMan.scss';
 
 // assets
 const logo = '/logo.png';
