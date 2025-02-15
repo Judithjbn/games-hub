@@ -1,3 +1,5 @@
+import HomeButton from '../../components/HomeButton/HomeButton.js';
+
 function checkWin(moves, player) {
     const winningCombinations = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -20,9 +22,7 @@ function drawWinningLine(board, winningCombo) {
         console.error("Error: Combinación ganadora inválida", winningCombo);
         return;
     }
-
     const cells = board.querySelectorAll('.cell');
-
     const firstCell = cells[winningCombo[0]];
     const lastCell = cells[winningCombo[2]];
 
@@ -30,7 +30,6 @@ function drawWinningLine(board, winningCombo) {
         console.error("Error: No se encontraron las celdas correctas");
         return;
     }
-
     const firstRect = firstCell.getBoundingClientRect();
     const lastRect = lastCell.getBoundingClientRect();
     const boardRect = board.getBoundingClientRect();
@@ -153,6 +152,7 @@ export default function TicTacToe() {
         gameContainer.replaceWith(newGame);
     });
 
+    gameContainer.appendChild(HomeButton());
     gameContainer.appendChild(scoreboard);
     gameContainer.appendChild(info);
     gameContainer.appendChild(board);
