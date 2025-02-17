@@ -2,6 +2,7 @@ import { createCard } from './GamesCards.js';
 import { iconTicTacToe, iconTetris, iconPacMan } from '../../import.js';
 
 import TicTacToe from '../../games/TicTacToe/TicTacToe.js';
+import PacManGame from '../../games/PacMan/PacMan.js';
 
 export default function GamesGrid() {
   const games = [
@@ -19,8 +20,9 @@ export default function GamesGrid() {
     },
     {
       title: 'Pac-Man',
-      description: 'El juego de arcade más icónico.',
+      description: 'Un clásico juego de fantasmas y laberintos.',
       icon: iconPacMan,
+      action: PacManGame,
     },
   ];
 

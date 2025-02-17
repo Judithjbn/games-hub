@@ -1,4 +1,4 @@
-.pacman-game {
+.pacman-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,7 +6,6 @@
     height: 100vh;
     background-color: black;
 }
-
 .pacman-board {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
@@ -16,18 +15,17 @@
     height: 400px;
     background-color: #000;
 }
-
-.cell {
+.pacman-cell {
     width: 40px;
     height: 40px;
     background-color: #222;
     border-radius: 5px;
 }
 
-.wall {
+.pacman-wall {
     background-color: var(--primary-color);
 }
-.pacman {
+.pacman-character {
     width: 30px;
     height: 30px;
     background-color: white;
@@ -38,5 +36,46 @@
 
 @keyframes pacman-animation {
     0% { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
-    100% { clip-path: polygon(0% 0%, 100% 0%, 80% 50%, 100% 100%, 0% 100%); }
+    100% { clip-path: polygon(0% 0%, 100% 0%, 50% 50%, 100% 100%, 0% 100%); }
+}
+
+.pacman-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pacman-button {
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 5px;
+    transition: transform 0.2s;
+}
+
+.pacman-button:hover {
+    transform: scale(1.1);
+}
+@media (max-width: 480px) {
+    .pacman-board {
+        width: 90vw;
+        height: 90vw;
+        gap: 3px;
+    }
+
+    .pacman-character {
+        width: 25px;
+        height: 25px;
+    }
+
+    .pacman-button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
 }

@@ -1,6 +1,6 @@
 export function createPacMan() {
     const pacMan = document.createElement('div');
-    pacMan.classList.add('pacman');
+    pacMan.classList.add('pacman-character');
 
     let position = { x: 1, y: 1 };
     const boardSize = 10; 
