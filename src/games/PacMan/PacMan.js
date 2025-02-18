@@ -22,6 +22,13 @@ function createMobileControls() {
     return controls;
 }
 
+function createScoreDisplay() {
+    const scoreDisplay = document.createElement('div');
+    scoreDisplay.classList.add('pacman-score');
+    scoreDisplay.textContent = 'Puntos: 0';
+    return scoreDisplay;
+}
+
 export default function PacManGame() {
     const gameContainer = document.createElement('div');
     gameContainer.classList.add('pacman-container');
@@ -30,8 +37,10 @@ export default function PacManGame() {
     const gameBoard = createGameBoard();
     const pacMan = createPacMan(gameBoard);
     const controls = createMobileControls();
+    const scoreDisplay = createScoreDisplay();
 
     gameContainer.appendChild(homeButton);
+    gameContainer.appendChild(scoreDisplay);
     gameContainer.appendChild(gameBoard);
     if (controls) gameContainer.appendChild(controls);
 
