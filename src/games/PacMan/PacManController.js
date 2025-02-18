@@ -1,24 +1,46 @@
-export function createPacMan() {
+export function createPacMan(board) {
     const pacMan = document.createElement('div');
     pacMan.classList.add('pacman-character');
 
     let position = { x: 1, y: 1 };
-    const boardSize = 10; 
-
+    const boardSize = 10;
+    
     function updatePosition() {
-        pacMan.style.transform = `translate(${position.x * 40}px, ${position.y * 40}px)`;
+        const index = position.y * boardSize + position.x;
+        const cells = board.querySelectorAll('.pacman-cell');
+
+        cells.forEach(cell => cell.classList.remove('pacman-active'));
+        if (cells[index]) {
+            cells[index].appendChild(pacMan);
+            cells[index].classList.add('pacman-active');
+        }
     }
 
     document.addEventListener('keydown', (event) => {
+        let newX = position.x;
+        let newY = position.y;
+
         switch (event.key) {
-            case 'ArrowUp': if (position.y > 0) position.y--; break;
-            case 'ArrowDown': if (position.y < boardSize - 1) position.y++; break;
-            case 'ArrowLeft': if (position.x > 0) position.x--; break;
-            case 'ArrowRight': if (position.x < boardSize - 1) position.x++; break;
+            case 'ArrowUp': if (newY > 0) newY--; break;
+            case 'ArrowDown': if (newY < boardSize - 1) newY++; break;
+            case 'ArrowLeft': if (newX > 0) newX--; break;
+            case 'ArrowRight': if (newX < boardSize - 1) newX++; break;
         }
-        updatePosition();
+
+        if (!checkCollision(newX, newY, board)) {
+            position.x = newX;
+            position.y = newY;
+            updatePosition();
+        }
     });
 
     updatePosition();
     return pacMan;
+}
+
+function checkCollision(x, y, board) {
+    const cells = board.querySelectorAll('.pacman-cell');
+    const index = y * 10 + x; 
+
+    return cells[index] && cells[index].classList.contains('pacman-wall');
 }

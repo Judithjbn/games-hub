@@ -28,10 +28,9 @@ export default function PacManGame() {
 
     const homeButton = HomeButton();
     const gameBoard = createGameBoard();
-    const pacMan = createPacMan();
+    const pacMan = createPacMan(gameBoard);
     const controls = createMobileControls();
 
-    gameBoard.appendChild(pacMan);
     gameContainer.appendChild(homeButton);
     gameContainer.appendChild(gameBoard);
     if (controls) gameContainer.appendChild(controls);
