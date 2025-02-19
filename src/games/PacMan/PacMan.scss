@@ -4,7 +4,6 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: black;
 }
 .pacman-board {
     display: grid;
@@ -13,7 +12,6 @@
     gap: 5px;
     width: 400px;
     height: 400px;
-    background-color: #000;
 }
 .pacman-cell {
     display: flex;
@@ -75,7 +73,61 @@
 .pacman-button:hover {
     transform: scale(1.1);
 }
+.win-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    font-size: 24px;
+    text-align: center;
+    border-radius: 10px;
+    z-index: 9999;
+}
+
+.restart-button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 15px;
+    font-size: 18px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.restart-button:hover {
+    background-color: var(--secondary-color);
+}
+.pacman-ghost {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    transition: transform 0.6s ease-in-out;
+}
+.lose-message {
+    z-index: 999;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
 @media (max-width: 480px) {
+    .control-button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
     .pacman-board {
         width: 90vw;
         height: 90vw;
@@ -83,10 +135,17 @@
     }
 
     .pacman-character {
-        width: 25px;
-        height: 25px;
+        width: 10px;
+        height: 10px;
     }
-
+    .pacman-ghost {
+        width: 10px;
+        height: 10px;
+    }
+    .pacman-cell {
+        width: 20px;
+        height: 20px;
+    }
     .pacman-button {
         width: 40px;
         height: 40px;

@@ -1,9 +1,9 @@
 import HomeButton from '../../components/HomeButton/HomeButton.js';
 import { createPacMan } from './PacManController.js';
 import { createGameBoard } from './PacManMap.js';
+import { createGhosts } from './PacManGhosts.js';
 
 function createMobileControls() {
-    // mobile
     if (window.innerWidth > 600) return null; 
     const controls = document.createElement('div');
     controls.classList.add('mobile-controls');
@@ -22,26 +22,39 @@ function createMobileControls() {
     return controls;
 }
 
-function createScoreDisplay() {
-    const scoreDisplay = document.createElement('div');
-    scoreDisplay.classList.add('pacman-score');
-    scoreDisplay.textContent = 'Puntos: 0';
-    return scoreDisplay;
+function showLoseMessage() {
+    if (document.querySelector('.lose-message')) return;
+
+    const loseMessage = document.createElement('div');
+    loseMessage.classList.add('lose-message');
+    loseMessage.textContent = '¡Has perdido! 👻';
+
+    const restartButton = document.createElement('button');
+    restartButton.textContent = 'Reiniciar';
+    restartButton.classList.add('restart-button');
+    restartButton.addEventListener('click', () => {
+        location.reload();
+    });
+
+    loseMessage.appendChild(restartButton);
+    document.body.appendChild(loseMessage);
 }
+
+
 
 export default function PacManGame() {
     const gameContainer = document.createElement('div');
     gameContainer.classList.add('pacman-container');
 
     const homeButton = HomeButton();
-    const gameBoard = createGameBoard();
-    const pacMan = createPacMan(gameBoard);
+    const { board, totalDots } = createGameBoard();
+    const pacMan = createPacMan(board, totalDots, showLoseMessage);
+
+    createGhosts(board, pacMan, showLoseMessage);
     const controls = createMobileControls();
-    const scoreDisplay = createScoreDisplay();
 
     gameContainer.appendChild(homeButton);
-    gameContainer.appendChild(scoreDisplay);
-    gameContainer.appendChild(gameBoard);
+    gameContainer.appendChild(board);
     if (controls) gameContainer.appendChild(controls);
 
     return gameContainer;

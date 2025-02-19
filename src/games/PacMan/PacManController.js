@@ -1,6 +1,6 @@
 let score = 0;
 
-export function createPacMan(board) {
+export function createPacMan(board, totalDots, onLose) {
     const pacMan = document.createElement('div');
     pacMan.classList.add('pacman-character');
 
@@ -10,21 +10,35 @@ export function createPacMan(board) {
     function updatePosition() {
         const index = position.y * boardSize + position.x;
         const cells = board.querySelectorAll('.pacman-cell');
-    
+
         cells.forEach(cell => cell.classList.remove('pacman-active'));
         if (cells[index]) {
             cells[index].appendChild(pacMan);
             cells[index].classList.add('pacman-active');
-    
+
             const dot = cells[index].querySelector('.pacman-dot');
             if (dot) {
                 dot.remove();
                 updateScore(10);
+                totalDots--;
                 checkWinCondition();
             }
+
+            checkGhostCollision();
         }
     }
-    
+
+    function checkGhostCollision() {
+        const ghosts = document.querySelectorAll('.pacman-ghost');
+        ghosts.forEach(ghost => {
+            const ghostX = parseInt(ghost.dataset.x);
+            const ghostY = parseInt(ghost.dataset.y);
+
+            if (ghostX === position.x && ghostY === position.y) {
+                onLose();
+            }
+        });
+    }
 
     document.addEventListener('keydown', (event) => {
         let newX = position.x;
@@ -44,6 +58,12 @@ export function createPacMan(board) {
         }
     });
 
+    function checkWinCondition() {
+        if (totalDots === 0) {
+            showWinMessage();
+        }
+    }
+
     updatePosition();
     return pacMan;
 }
@@ -58,8 +78,27 @@ function checkCollision(x, y, board) {
 
 function updateScore(points) {
     score += points;
-    const scoreElement = document.querySelector('.pacman-score');
+    let scoreElement = document.querySelector('.pacman-score');
+    
     if (scoreElement) {
         scoreElement.textContent = `Puntos: ${score}`;
     }
+}
+
+function showWinMessage() {
+    if (document.querySelector('.win-message')) return;
+
+    const winMessage = document.createElement('div');
+    winMessage.classList.add('win-message');
+    winMessage.textContent = '¡Has ganado! 🎉';
+
+    const restartButton = document.createElement('button');
+    restartButton.textContent = 'Reiniciar';
+    restartButton.classList.add('restart-button');
+    restartButton.addEventListener('click', () => {
+        location.reload();
+    });
+
+    winMessage.appendChild(restartButton);
+    document.body.appendChild(winMessage);
 }
