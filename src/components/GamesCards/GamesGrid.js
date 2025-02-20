@@ -2,6 +2,7 @@ import { createCard } from './GamesCards.js';
 import { iconTicTacToe, iconTetris, iconPacMan } from '../../import.js';
 
 import TicTacToe from '../../games/TicTacToe/TicTacToe.js';
+import TetrisGame from '../../games/Tetris/Tetris.js';
 import PacManGame from '../../games/PacMan/PacMan.js';
 
 export default function GamesGrid() {
@@ -17,6 +18,7 @@ export default function GamesGrid() {
       title: 'Tetris',
       description: 'Un desafío para construir líneas.',
       icon: iconTetris,
+      action: TetrisGame,
     },
     {
       title: 'Pac-Man',
