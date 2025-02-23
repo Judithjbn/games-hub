@@ -1,3 +1,5 @@
+
+
 export default function TetrisGame() {
     // cambio de crear array manualmente, cuantos elementos vs posciones, fill ppara dejarlo vacio
     const rows = 12;
@@ -14,7 +16,7 @@ export default function TetrisGame() {
                 ["L", "", ""],
                 ["L", "L", ""]
             ],
-            color: "red"
+            color: "#F93827"
         },
         {
             valor: "I",
@@ -24,7 +26,27 @@ export default function TetrisGame() {
                 ["I", "", ""],
                 ["I", "", ""]
             ],
-            color: "orange"
+            color: "#FFD65A"
+        },
+        {
+            valor: "O",
+            render: [
+                ["", "", ""],
+                ["", "", ""],
+                ["O", "O", ""],
+                ["O", "O", ""]
+            ],
+            color: "#00ffcc"
+        },
+        {
+            valor: "Z",
+            render: [
+                ["", "", ""],
+                ["", "Z", ""],
+                ["", "Z", ""],
+                ["Z", "Z", "Z"]
+            ],
+            color: "#8B5DFF"
         }
     ];
     
@@ -153,13 +175,14 @@ export default function TetrisGame() {
         if (gameOver) return;
         if (event.key === "ArrowLeft" && currentCol > 0 && !collision(currentRow, currentCol - 1)) {
             currentCol--;
-        } else if (event.key === "ArrowRight" && currentCol + currentPiece.render[0].length <= cols && !collision(currentRow, currentCol + 1)) {
+        } else if (event.key === "ArrowRight" && currentCol + currentPiece.render[0].length < cols && !collision(currentRow, currentCol + 1)) {
             currentCol++;
-        } else if (event.key === "ArrowDown") {
-            dropPiece();
+        } else if (event.key === "ArrowDown" && currentRow + currentPiece.render.length <= rows && !collision(currentRow + 1, currentCol)) {
+            currentRow++;
         }
         drawBoard();
     });
+    
     
     drawBoard();
     renderNextPiece();
