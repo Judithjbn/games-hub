@@ -85,10 +85,27 @@ export default function TetrisGame() {
         }
     }
     
+    function checkGameOver() {
+        for (let col = 0; col < cols; col++) {
+            let filledCells = 0;
+            for (let row = 0; row < rows; row++) {
+                if (arrayTetris[row][col]) {
+                    filledCells++;
+                }
+            }
+            if (filledCells === rows) {
+                alert("Has perdido");
+                location.reload();
+                return;
+            }
+        }
+    }
+    
     function dropPiece() {
         const interval = setInterval(() => {
             if (currentRow + currentPiece.render.length >= rows || collision(currentRow + 1, currentCol)) {
                 placePiece();
+                checkGameOver();
                 currentPiece = nextPiece;
                 nextPiece = getRandomPiece();
                 currentRow = 0;
