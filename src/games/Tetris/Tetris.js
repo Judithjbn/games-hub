@@ -3,6 +3,7 @@ export default function TetrisGame() {
     const rows = 12;
     const cols = 8;
     const arrayTetris = Array.from({ length: rows }, () => Array(cols).fill(""));
+    let gameOver = false;
     
     const pieces = [
         {
@@ -86,6 +87,7 @@ export default function TetrisGame() {
     }
     
     function checkGameOver() {
+        if (gameOver) return;
         for (let col = 0; col < cols; col++) {
             let filledCells = 0;
             for (let row = 0; row < rows; row++) {
@@ -94,18 +96,23 @@ export default function TetrisGame() {
                 }
             }
             if (filledCells === rows) {
-                alert("Has perdido");
-                location.reload();
+                gameOver = true;
+                setTimeout(() => {
+                    alert("Has perdido");
+                    location.reload();
+                }, 100);
                 return;
             }
         }
     }
     
     function dropPiece() {
+        if (gameOver) return;
         const interval = setInterval(() => {
             if (currentRow + currentPiece.render.length >= rows || collision(currentRow + 1, currentCol)) {
                 placePiece();
                 checkGameOver();
+                if (gameOver) return;
                 currentPiece = nextPiece;
                 nextPiece = getRandomPiece();
                 currentRow = 0;
@@ -143,6 +150,7 @@ export default function TetrisGame() {
     }
     
     document.addEventListener("keydown", (event) => {
+        if (gameOver) return;
         if (event.key === "ArrowLeft" && currentCol > 0 && !collision(currentRow, currentCol - 1)) {
             currentCol--;
         } else if (event.key === "ArrowRight" && currentCol + currentPiece.render[0].length <= cols && !collision(currentRow, currentCol + 1)) {
